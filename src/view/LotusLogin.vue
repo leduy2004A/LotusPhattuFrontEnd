@@ -57,29 +57,29 @@ methods:{
             const payload = {gmail,password};
              this.$store.dispatch("user/loginPhatTuAction",payload);
         this.$store.dispatch("user/savelogin",gmail);
-        let data = localStorage.getItem('token');
-        let data2 = JSON.parse(data);
-        let token = data2.stoken;
-        if(token !== null)
-        {
-            Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: 'Đăng nhập thành công',
-        showConfirmButton: false,
-        timer: 1500
-        })
-        this.$router.push("/quanlicacphatmain")
-        }
-        else{
-             Swal.fire({
-        icon: 'error',
-        title: 'Đăng nhập thất bại',
-        showConfirmButton: false,
-        timer: 1500
-        })
+        // let data = localStorage.getItem('token');
+        // let data2 = JSON.parse(data);
+        // let token = data2.stoken;
+        // if(token !== null)
+        // {
+        //     Swal.fire({
+        // position: 'center',
+        // icon: 'success',
+        // title: 'Đăng nhập thành công',
+        // showConfirmButton: false,
+        // timer: 1500
+        // })
+        // this.$router.push("/quanlicacphatmain")
+        // }
+        // else{
+        //      Swal.fire({
+        // icon: 'error',
+        // title: 'Đăng nhập thất bại',
+        // showConfirmButton: false,
+        // timer: 1500
+        // })
         
-        }
+        // }
                 
         }
        

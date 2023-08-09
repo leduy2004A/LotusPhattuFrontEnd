@@ -33,7 +33,15 @@ export default {
         return{
             anhlotus
         }
-    }
+    },
+    // methods:{
+    //     getRole()
+    //     {
+    //         let data= localStorage.getItem('token');
+    //         let data2 = JSON.parse(data)
+    //         if(data2.stoken)
+    //     }
+    // }
 }
 </script>
 

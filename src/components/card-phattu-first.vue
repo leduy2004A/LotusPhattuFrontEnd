@@ -65,18 +65,8 @@ export default {
                 this.$store.dispatch("user/timphattheoemailactions",this.email);
                 
                }
-               if(this.gioitinh !== "")
-               {
-                this.$store.dispatch("user/timtheogioitinhactions",this.gioitinh);
-               }
-               if(this.trangthaiphattu !== null)
-               {
-                this.$store.dispatch("user/timtheotrangthaiphattuas",this.trangthaiphattu);
-               }
             }
-            // ...mapActions({
-            //     timkiem:"timphattheoemailactions"
-            // })
+            
   
     }
 }

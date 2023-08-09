@@ -6,15 +6,15 @@ const axiosApi = axios.create({
       "Access-Control-Allow-Origin": "*",
     },
   });
-  axiosApi.interceptors.request.use(function (config) {
-    let data = localStorage.getItem("token");
-    let data2 = JSON.parse(data);
-    let token = data2.stoken;
-    config.headers.Authorization = `Bearer ${token}`
-    return config;
-  }, function (error) {
-    return Promise.reject(error);
-  });
+  // axiosApi.interceptors.request.use(function (config) {
+  //   let data = localStorage.getItem("token");
+  //   let data2 = JSON.parse(data);
+  //   let token = data2.stoken;
+  //   config.headers.Authorization = `Bearer ${token}`
+  //   return config;
+  // }, function (error) {
+  //   return Promise.reject(error);
+  // });
 
   axiosApi.interceptors.response.use(
     response => {

@@ -1,6 +1,9 @@
 import {getListPhatTu,xoaPhatTu,addPhatTu,phantrangphat,suaphattu} from '../../apis/phattu'
 import {loginPhattu} from '../../apis/login'
 import {getTokenApi} from '../../apis/token'
+import axiosApi from '../../apis/index'
+import router from '@/router'
+import Swal from 'sweetalert2';
 const state = ()=>{
     {
     return{
@@ -410,15 +413,53 @@ const mutations = {
     {
         const data = await getTokenApi(payload);
         state.userLogin = data;
-        localStorage.setItem('token',JSON.stringify(data));
-        // router.push("quanlicacphat");
-        // if(localStorage.getItem('token') === "")
-        // {
-        //     router.push("logincacphat");
-        // }
-        // else{
-        //     router.push("quanlicacphatmain");
-        // }
+        if(data.stoken !== null && data !== null)
+        {
+              localStorage.setItem('token',JSON.stringify(data));
+        axiosApi.interceptors.request.use(function (config) {
+            let data = localStorage.getItem("token");
+            let data2 = JSON.parse(data);
+            let token = data2.stoken;
+            config.headers.Authorization = `Bearer ${token}`
+            return config;
+          }, function (error) {
+            return Promise.reject(error);
+          });
+          let duy = localStorage.getItem('token');
+          let duy2 = JSON.parse(duy);
+          let tokenmain = duy2.stoken;
+          if(tokenmain !== null)
+          {
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Đăng nhập thành công',
+                showConfirmButton: false,
+                timer: 1500
+                })
+            router.push("/quanlicacphatmain")
+          }
+          else{
+            Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: 'Đăng nhập thất bại',
+                showConfirmButton: false,
+                timer: 1500
+                })
+          
+          }
+        }
+        else{
+            Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: 'Đăng nhập thất bại',
+                showConfirmButton: false,
+                timer: 1500
+                })
+        }
+      
         console.log(data);
     },
     phantrangphatMutaitions(state,payload)
